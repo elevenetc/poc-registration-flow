@@ -10,4 +10,4 @@
 
 /.idea
 *.ipr
-*.iml
+/lib-registration/build
