@@ -22,6 +22,6 @@ public class InMemoryDatabase implements Database {
 
     @Override
     public boolean isRegistrationPassed() {
-        return false;
+        return isRegistrationPassed;
     }
 }

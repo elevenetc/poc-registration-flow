@@ -19,13 +19,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static utils.MockitoUtils.once;
+import static utils.Values.password;
+import static utils.Values.secretWord;
+import static utils.Values.token;
+import static utils.Values.username;
 
 public class RegistrationFlowUnitTests {
-
-    final String username = "username";
-    final String password = "password";
-    final String token = "token";
-    final String secretWord = "secretWord";
 
     Database database;
     RegistrationFlow registrationFlow;
