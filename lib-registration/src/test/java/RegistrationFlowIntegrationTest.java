@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import java.util.LinkedList;
-
 import io.reactivex.observers.TestObserver;
 import poc.registration.RegistrationFlow;
 import poc.registration.api.BackendApi;
@@ -34,11 +32,11 @@ public class RegistrationFlowIntegrationTest {
                 .andThen(registrationFlow.sendEvent(new AgreeWithTermsRequest()))
                 .subscribe(observer);
 
-        subscriber.assertClassSequence(new LinkedList<Class>() {{
-            add(NewUserCreated.class);
-            add(SecretWordCreated.class);
-            add(RegistrationPassed.class);
-        }});
+        subscriber.assertTypeSequence(
+                NewUserCreated.class,
+                SecretWordCreated.class,
+                RegistrationPassed.class
+        );
         observer.assertComplete();
         assertTrue(database.isRegistrationPassed());
     }

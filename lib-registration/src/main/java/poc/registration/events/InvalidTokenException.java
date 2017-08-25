@@ -1,4 +1,4 @@
-package poc.registration.exceptions;
+package poc.registration.events;
 
 public class InvalidTokenException extends RuntimeException {
 }

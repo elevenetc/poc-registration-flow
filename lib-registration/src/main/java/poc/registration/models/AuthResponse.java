@@ -9,8 +9,4 @@ public class AuthResponse {
         this.token = token;
         this.alreadyRegistered = alreadyRegistered;
     }
-
-    public AuthResponse() {
-
-    }
 }

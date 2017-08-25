@@ -1,11 +1,17 @@
 package utils;
 
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.subscribers.TestSubscriber;
 
 public class TestClassSubscriber<T> extends TestSubscriber<T> {
-    public void assertClassSequence(List<Class> expectedSequence) {
+
+    public void assertTypeSequence(Class... classes) {
+        assertTypeSequence(Arrays.asList(classes));
+    }
+
+    public void assertTypeSequence(List<Class> expectedSequence) {
         if (expectedSequence.size() != values.size())
             throw fail("unequal sequence size. expected:" + expectedSequence.size() + " actual:" + values.size());
 

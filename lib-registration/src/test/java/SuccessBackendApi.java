@@ -1,5 +1,5 @@
 import poc.registration.api.BackendApi;
-import poc.registration.exceptions.InvalidTokenException;
+import poc.registration.events.InvalidTokenException;
 import poc.registration.models.AgreeWithTermsResponse;
 import poc.registration.models.AuthResponse;
 import poc.registration.models.SecretWordResponse;
