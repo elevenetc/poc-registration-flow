@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import poc.registration.app.R;
 
-public class AuthActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_main);
     }
 }

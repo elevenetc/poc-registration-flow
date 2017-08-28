@@ -2,6 +2,7 @@ package poc.registration.impl;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.processors.PublishProcessor;
 import poc.registration.RegistrationFlow;
 import poc.registration.api.BackendApi;
@@ -40,6 +41,11 @@ public class RegistrationFlowImpl implements RegistrationFlow {
         }
 
         return Completable.error(new UnsupportedEventException(event));
+    }
+
+    @Override
+    public Single<Boolean> isRegistrationPassed() {
+        return Single.fromCallable(database::isRegistrationPassed);
     }
 
     private Completable agreeWithTerms() {
