@@ -7,6 +7,7 @@ import dagger.Provides;
 import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.app.App;
+import poc.registration.app.database.InMemoryDatabase;
 import poc.registration.app.flows.FrontEndFlow;
 import poc.registration.app.flows.RegistrationFrontEndFlow;
 import poc.registration.app.scheduling.SchedulersManager;
@@ -45,8 +46,14 @@ public class CoreModule {
 
     @Provides
     @Singleton
-    public RegistrationBackEndFlow provideRegistrationFlow() {
-        return new RegistrationBackEndFlowImpl(getDatabase(), getBackendApi());
+    public RegistrationBackEndFlow provideRegistrationFlow(Database database) {
+        return new RegistrationBackEndFlowImpl(database, getBackendApi());
+    }
+
+    @Provides
+    @Singleton
+    public Database provideDatabase() {
+        return new InMemoryDatabase();
     }
 
     @Provides
@@ -60,46 +67,22 @@ public class CoreModule {
 
             @Override
             public AuthResponse auth(String username, String password) {
-                return null;
+                return new AuthResponse("", false);
             }
 
             @Override
             public SecretWordResponse createSecretWord(String secretWord, String token) {
-                return null;
+                return new SecretWordResponse();
             }
 
             @Override
             public String getTerms(String token) {
-                return null;
+                return "terms";
             }
 
             @Override
             public AgreeWithTermsResponse agreeWithTerms(String token) {
-                return null;
-            }
-        };
-    }
-
-    private Database getDatabase() {
-        return new Database() {
-            @Override
-            public void storeToken(String token) {
-
-            }
-
-            @Override
-            public String getToken() {
-                return null;
-            }
-
-            @Override
-            public void setRegistrationPassed() {
-
-            }
-
-            @Override
-            public boolean isRegistrationPassed() {
-                return false;
+                return new AgreeWithTermsResponse();
             }
         };
     }

@@ -1,9 +1,12 @@
+package poc.registration.app.database;
+
+import io.reactivex.Completable;
 import poc.registration.cache.Database;
 
 public class InMemoryDatabase implements Database {
 
-    boolean isRegistrationPassed = false;
-    String token;
+    public boolean isRegistrationPassed = false;
+    public String token;
 
     @Override
     public void storeToken(String token) {
@@ -23,5 +26,13 @@ public class InMemoryDatabase implements Database {
     @Override
     public boolean isRegistrationPassed() {
         return isRegistrationPassed;
+    }
+
+    @Override
+    public Completable logout() {
+        return Completable.fromAction(() -> {
+            isRegistrationPassed = false;
+            token = null;
+        });
     }
 }

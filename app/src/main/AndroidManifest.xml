@@ -17,6 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".views.SecretWordActivity"/>
+        <activity android:name=".views.TermsActivity"/>
+        <activity android:name=".views.LoginOrSingInActivity"/>
+        <activity android:name=".views.MainActivity"/>
     </application>
 
 </manifest>

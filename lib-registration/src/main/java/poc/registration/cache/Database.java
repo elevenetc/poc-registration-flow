@@ -1,5 +1,7 @@
 package poc.registration.cache;
 
+import io.reactivex.Completable;
+
 public interface Database {
 
     void storeToken(String token);
@@ -10,4 +12,5 @@ public interface Database {
 
     boolean isRegistrationPassed();
 
+    Completable logout();
 }

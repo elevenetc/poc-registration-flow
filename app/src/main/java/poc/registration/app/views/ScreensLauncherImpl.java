@@ -34,4 +34,11 @@ public class ScreensLauncherImpl implements ScreensLauncher {
     public void gotoTerms() {
         app.startActivity(new Intent(app, TermsActivity.class));
     }
+
+    @Override
+    public void gotoLauncher() {
+        app.startActivity(new Intent(app, LaunchActivity.class)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        );
+    }
 }

@@ -8,4 +8,6 @@ public interface ScreensLauncher {
     void goToSecretWord();
 
     void gotoTerms();
+
+    void gotoLauncher();
 }

@@ -4,10 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import poc.registration.app.di.modules.CoreModule;
-import poc.registration.app.presenters.LaunchPresenter;
-import poc.registration.app.presenters.LogInOrSignInPresenter;
-import poc.registration.app.presenters.SecretWordPresenter;
-import poc.registration.app.presenters.TermsPresenter;
+import poc.registration.app.presenters.*;
 
 @Singleton
 @Component(modules = {CoreModule.class})
@@ -19,4 +16,6 @@ public interface CoreComponent {
     LogInOrSignInPresenter inject(LogInOrSignInPresenter presenter);
 
     TermsPresenter inject(TermsPresenter presenter);
+
+    MainPresenter inject(MainPresenter presenter);
 }

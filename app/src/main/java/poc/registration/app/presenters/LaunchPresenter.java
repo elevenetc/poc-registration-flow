@@ -31,7 +31,13 @@ public class LaunchPresenter extends Presenter<LaunchView> {
         backEndFlow
                 .isRegistrationPassed()
                 .compose(schedulers.single())
-                .subscribe(passed -> frontEndFlow.handleEvent(new RegistrationPassed()));
+                .subscribe(passed -> {
+                    if (passed) {
+                        frontEndFlow.handleEvent(new RegistrationPassed());
+                    } else {
+                        frontEndFlow.handleEvent(new StartLoginOrSingIn());
+                    }
+                });
 
         return this;
     }
