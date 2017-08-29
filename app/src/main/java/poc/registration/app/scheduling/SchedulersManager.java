@@ -11,10 +11,10 @@ public interface SchedulersManager {
 
     Scheduler background();
 
-    <T> SingleTransformer<T, T> uiAndBackSingle();
+    <T> SingleTransformer<T, T> single();
 
-    <T> FlowableTransformer<T, T> uiAndBackFlowable();
+    <T> FlowableTransformer<T, T> flowable();
 
-    CompletableTransformer uiAndBackCompletable();
+    CompletableTransformer completable();
 
 }

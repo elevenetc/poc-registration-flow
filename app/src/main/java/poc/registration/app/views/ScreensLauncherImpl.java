@@ -22,11 +22,16 @@ public class ScreensLauncherImpl implements ScreensLauncher {
 
     @Override
     public void goToLogInOrSignIn() {
-        app.startActivity(new Intent(app, AuthActivity.class));
+        app.startActivity(new Intent(app, LoginOrSingInActivity.class));
     }
 
     @Override
     public void goToSecretWord() {
+        app.startActivity(new Intent(app, SecretWordActivity.class));
+    }
 
+    @Override
+    public void gotoTerms() {
+        app.startActivity(new Intent(app, TermsActivity.class));
     }
 }

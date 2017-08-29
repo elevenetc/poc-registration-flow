@@ -6,4 +6,6 @@ public interface ScreensLauncher {
     void goToLogInOrSignIn();
 
     void goToSecretWord();
+
+    void gotoTerms();
 }

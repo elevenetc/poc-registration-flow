@@ -2,19 +2,15 @@ package poc.registration.app.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import javax.inject.Inject;
-
-import poc.registration.RegistrationFlow;
 import poc.registration.app.R;
 import poc.registration.app.presenters.LaunchPresenter;
 
 import static poc.registration.app.di.DIHelper.coreComponent;
 
-public class LaunchActivity extends AppCompatActivity {
+public class LaunchActivity extends AppCompatActivity implements LaunchView {
 
-    @Inject
-    RegistrationFlow registrationFlow;
     private LaunchPresenter presenter;
 
     @Override
@@ -24,14 +20,19 @@ public class LaunchActivity extends AppCompatActivity {
 
         presenter = coreComponent()
                 .inject(new LaunchPresenter())
-                .onCreate();
+                .onViewCreated(this);
 
-
+        findViewById(R.id.btn_login_or_signin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.loginOrSignIn();
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
-        presenter.onDestroy();
+        presenter.onViewDestroyed();
         super.onDestroy();
     }
 }

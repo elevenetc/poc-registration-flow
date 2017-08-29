@@ -4,15 +4,17 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import poc.registration.RegistrationFlow;
+import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.app.App;
+import poc.registration.app.flows.FrontEndFlow;
+import poc.registration.app.flows.RegistrationFrontEndFlow;
 import poc.registration.app.scheduling.SchedulersManager;
 import poc.registration.app.scheduling.SchedulersManagerImpl;
 import poc.registration.app.views.ScreensLauncher;
 import poc.registration.app.views.ScreensLauncherImpl;
 import poc.registration.cache.Database;
-import poc.registration.impl.RegistrationFlowImpl;
+import poc.registration.impl.RegistrationBackEndFlowImpl;
 import poc.registration.models.AgreeWithTermsResponse;
 import poc.registration.models.AuthResponse;
 import poc.registration.models.SecretWordResponse;
@@ -30,19 +32,26 @@ public class CoreModule {
 
     @Provides
     @Singleton
+    public FrontEndFlow provideFrontEndFlow(ScreensLauncher screensLauncher) {
+        return new RegistrationFrontEndFlow(screensLauncher);
+    }
+
+
+    @Provides
+    @Singleton
     public SchedulersManager provideSchedulersManager() {
         return new SchedulersManagerImpl();
     }
 
     @Provides
     @Singleton
-    public RegistrationFlow provideRegistrationFlow() {
-        return new RegistrationFlowImpl(getDatabase(), getBackendApi());
+    public RegistrationBackEndFlow provideRegistrationFlow() {
+        return new RegistrationBackEndFlowImpl(getDatabase(), getBackendApi());
     }
 
     @Provides
     @Singleton
-    public ScreensLauncher provideActiviyLancher() {
+    public ScreensLauncher provideScreensLauncher() {
         return new ScreensLauncherImpl(application);
     }
 

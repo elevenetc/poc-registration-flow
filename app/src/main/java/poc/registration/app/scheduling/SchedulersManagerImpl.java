@@ -31,17 +31,17 @@ public class SchedulersManagerImpl implements SchedulersManager {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> SingleTransformer<T, T> uiAndBackSingle() {
+    public <T> SingleTransformer<T, T> single() {
         return uiAndBackSingle;
     }
 
     @Override
-    public <T> FlowableTransformer<T, T> uiAndBackFlowable() {
+    public <T> FlowableTransformer<T, T> flowable() {
         return uiAndBackFlowable;
     }
 
     @Override
-    public CompletableTransformer uiAndBackCompletable() {
+    public CompletableTransformer completable() {
         return uiAndBackCompletable;
     }
 

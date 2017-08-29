@@ -2,17 +2,20 @@ package poc.registration.app.presenters;
 
 import javax.inject.Inject;
 
-import poc.registration.RegistrationFlow;
+import poc.registration.RegistrationBackEndFlow;
+import poc.registration.app.flows.FrontEndFlow;
 import poc.registration.app.scheduling.SchedulersManager;
-import poc.registration.app.views.ScreensLauncher;
+import poc.registration.app.views.LaunchView;
+import poc.registration.events.RegistrationPassed;
+import poc.registration.events.StartLoginOrSingIn;
 
-public class LaunchPresenter {
+public class LaunchPresenter extends Presenter<LaunchView> {
 
     @Inject
-    RegistrationFlow registrationFlow;
+    RegistrationBackEndFlow backEndFlow;
 
     @Inject
-    ScreensLauncher screensLauncher;
+    FrontEndFlow frontEndFlow;
 
     @Inject
     SchedulersManager schedulers;
@@ -21,23 +24,19 @@ public class LaunchPresenter {
 
     }
 
-    public LaunchPresenter onCreate() {
+    public LaunchPresenter onViewCreated(LaunchView view) {
 
-        registrationFlow
+        super.onViewCreated(view);
+
+        backEndFlow
                 .isRegistrationPassed()
-                .compose(schedulers.uiAndBackSingle())
-                .subscribe(passed -> {
-                    if (passed) screensLauncher.goToMain();
-                });
+                .compose(schedulers.single())
+                .subscribe(passed -> frontEndFlow.handleEvent(new RegistrationPassed()));
 
         return this;
     }
 
-    public void loginOrSignin() {
-        screensLauncher.goToLogInOrSignIn();
-    }
-
-    public void onDestroy() {
-
+    public void loginOrSignIn() {
+        frontEndFlow.handleEvent(new StartLoginOrSingIn());
     }
 }
