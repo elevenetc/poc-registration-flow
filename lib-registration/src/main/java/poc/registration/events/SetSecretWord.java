@@ -1,10 +1,10 @@
 package poc.registration.events;
 
-public class CreateSecretWord extends Event {
+public class SetSecretWord extends Event {
 
     public final String secretWord;
 
-    public CreateSecretWord(String secretWord) {
+    public SetSecretWord(String secretWord) {
 
         this.secretWord = secretWord;
     }

@@ -1,11 +1,11 @@
 import org.junit.Test;
 
 import io.reactivex.observers.TestObserver;
-import poc.registration.RegistrationFlow;
+import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.cache.Database;
 import poc.registration.events.*;
-import poc.registration.impl.RegistrationFlowImpl;
+import poc.registration.impl.RegistrationBackEndFlowImpl;
 import utils.TestClassSubscriber;
 
 import static org.junit.Assert.assertTrue;
@@ -13,7 +13,7 @@ import static utils.Values.password;
 import static utils.Values.secretWord;
 import static utils.Values.username;
 
-public class RegistrationFlowIntegrationTest {
+public class RegistrationBackEndFlowIntegrationTest {
     @Test
     public void successRegistration() {
 
@@ -22,21 +22,22 @@ public class RegistrationFlowIntegrationTest {
         TestObserver<Event> observer = new TestObserver<>();
         TestClassSubscriber subscriber = new TestClassSubscriber<Event>();
 
-        RegistrationFlow registrationFlow = new RegistrationFlowImpl(database, api);
+        RegistrationBackEndFlow registrationBackEndFlow = new RegistrationBackEndFlowImpl(database, api);
 
-        registrationFlow.eventsObservable().subscribe(subscriber);
+        registrationBackEndFlow.eventsObservable().subscribe(subscriber);
 
-        registrationFlow
+        registrationBackEndFlow
                 .sendEvent(new NewAuthRequest(username, password))
-                .andThen(registrationFlow.sendEvent(new CreateSecretWord(secretWord)))
-                .andThen(registrationFlow.sendEvent(new AgreeWithTermsRequest()))
+                .andThen(registrationBackEndFlow.sendEvent(new SetSecretWord(secretWord)))
+                .andThen(registrationBackEndFlow.sendEvent(new AgreeWithTermsRequest()))
                 .subscribe(observer);
 
         subscriber.assertTypeSequence(
                 NewUserCreated.class,
-                SecretWordCreated.class,
+                SecretWordSet.class,
                 RegistrationPassed.class
         );
+
         observer.assertComplete();
         assertTrue(database.isRegistrationPassed());
     }

@@ -3,14 +3,14 @@ import org.junit.Test;
 
 import io.reactivex.observers.TestObserver;
 import io.reactivex.subscribers.TestSubscriber;
-import poc.registration.RegistrationFlow;
+import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.cache.Database;
 import poc.registration.events.*;
 import poc.registration.exceptions.InvalidSecretWordException;
 import poc.registration.exceptions.InvalidUsernameOrPassword;
 import poc.registration.exceptions.UnsupportedEventException;
-import poc.registration.impl.RegistrationFlowImpl;
+import poc.registration.impl.RegistrationBackEndFlowImpl;
 import poc.registration.models.AgreeWithTermsResponse;
 import poc.registration.models.AuthResponse;
 import poc.registration.models.SecretWordResponse;
@@ -24,10 +24,10 @@ import static utils.Values.secretWord;
 import static utils.Values.token;
 import static utils.Values.username;
 
-public class RegistrationFlowUnitTests {
+public class RegistrationBackEndFlowUnitTests {
 
     Database database;
-    RegistrationFlow registrationFlow;
+    RegistrationBackEndFlow registrationBackEndFlow;
     BackendApi api;
     TestSubscriber<Event> eventsSubscriber;
     TestObserver<Event> resultObserver;
@@ -38,14 +38,14 @@ public class RegistrationFlowUnitTests {
     public void before() {
         database = mock(Database.class);
         api = mock(BackendApi.class);
-        registrationFlow = new RegistrationFlowImpl(database, api);
+        registrationBackEndFlow = new RegistrationBackEndFlowImpl(database, api);
         eventsSubscriber = TestSubscriber.create();
         resultObserver = new TestObserver<>();
     }
 
     @Test
     public void testUnsupportedEvent() {
-        registrationFlow.sendEvent(new UnsupportedEvent()).subscribe(resultObserver);
+        registrationBackEndFlow.sendEvent(new UnsupportedEvent()).subscribe(resultObserver);
         resultObserver.assertError(UnsupportedEventException.class);
     }
 
@@ -54,8 +54,8 @@ public class RegistrationFlowUnitTests {
 
         when(api.auth(username, password)).thenReturn(new AuthResponse(token, true));
 
-        registrationFlow.eventsObservable().subscribe(eventsSubscriber);
-        registrationFlow.sendEvent(new NewAuthRequest(username, password)).subscribe(resultObserver);
+        registrationBackEndFlow.eventsObservable().subscribe(eventsSubscriber);
+        registrationBackEndFlow.sendEvent(new NewAuthRequest(username, password)).subscribe(resultObserver);
 
         eventsSubscriber.assertValue(event -> event instanceof UserRegisteredAlready);
         resultObserver.assertComplete();
@@ -67,8 +67,8 @@ public class RegistrationFlowUnitTests {
 
         when(api.auth(username, password)).thenReturn(new AuthResponse(token, false));
 
-        registrationFlow.eventsObservable().subscribe(eventsSubscriber);
-        registrationFlow.sendEvent(new NewAuthRequest(username, password)).subscribe(resultObserver);
+        registrationBackEndFlow.eventsObservable().subscribe(eventsSubscriber);
+        registrationBackEndFlow.sendEvent(new NewAuthRequest(username, password)).subscribe(resultObserver);
 
         eventsSubscriber.assertValue(event -> event instanceof NewUserCreated);
         resultObserver.assertComplete();
@@ -80,8 +80,8 @@ public class RegistrationFlowUnitTests {
 
         when(api.auth(username, password)).thenThrow(invalidUsernameOrPassword);
 
-        registrationFlow.eventsObservable().subscribe(eventsSubscriber);
-        registrationFlow.sendEvent(new NewAuthRequest(username, password)).subscribe(resultObserver);
+        registrationBackEndFlow.eventsObservable().subscribe(eventsSubscriber);
+        registrationBackEndFlow.sendEvent(new NewAuthRequest(username, password)).subscribe(resultObserver);
 
         resultObserver.assertError(invalidUsernameOrPassword);
     }
@@ -92,10 +92,10 @@ public class RegistrationFlowUnitTests {
         when(api.createSecretWord(secretWord, token)).thenReturn(new SecretWordResponse());
         when(database.getToken()).thenReturn(token);
 
-        registrationFlow.eventsObservable().subscribe(eventsSubscriber);
-        registrationFlow.sendEvent(new CreateSecretWord(secretWord)).subscribe(resultObserver);
+        registrationBackEndFlow.eventsObservable().subscribe(eventsSubscriber);
+        registrationBackEndFlow.sendEvent(new SetSecretWord(secretWord)).subscribe(resultObserver);
 
-        eventsSubscriber.assertValue(event -> event instanceof SecretWordCreated);
+        eventsSubscriber.assertValue(event -> event instanceof SecretWordSet);
         resultObserver.assertComplete();
     }
 
@@ -105,8 +105,8 @@ public class RegistrationFlowUnitTests {
         when(database.getToken()).thenReturn(token);
         when(api.agreeWithTerms(token)).thenReturn(new AgreeWithTermsResponse());
 
-        registrationFlow.eventsObservable().subscribe(eventsSubscriber);
-        registrationFlow.sendEvent(new AgreeWithTermsRequest()).subscribe(resultObserver);
+        registrationBackEndFlow.eventsObservable().subscribe(eventsSubscriber);
+        registrationBackEndFlow.sendEvent(new AgreeWithTermsRequest()).subscribe(resultObserver);
 
         eventsSubscriber.assertValue(event -> event instanceof RegistrationPassed);
         resultObserver.assertComplete();
@@ -118,8 +118,8 @@ public class RegistrationFlowUnitTests {
         when(api.createSecretWord(secretWord, token)).thenThrow(invalidSecretWordException);
         when(database.getToken()).thenReturn(token);
 
-        registrationFlow.eventsObservable().subscribe(eventsSubscriber);
-        registrationFlow.sendEvent(new CreateSecretWord(secretWord)).subscribe(resultObserver);
+        registrationBackEndFlow.eventsObservable().subscribe(eventsSubscriber);
+        registrationBackEndFlow.sendEvent(new SetSecretWord(secretWord)).subscribe(resultObserver);
 
         resultObserver.assertError(invalidSecretWordException);
     }
