@@ -1,3 +1,5 @@
+package utils;
+
 import poc.registration.api.BackendApi;
 import poc.registration.events.InvalidTokenException;
 import poc.registration.models.AgreeWithTermsResponse;
@@ -20,7 +22,7 @@ public class SuccessBackendApi implements BackendApi {
     }
 
     @Override
-    public SecretWordResponse createSecretWord(String secretWord, String token) {
+    public SecretWordResponse setSecretWord(String secretWord, String token) {
         validateToken(token);
         return new SecretWordResponse();
     }

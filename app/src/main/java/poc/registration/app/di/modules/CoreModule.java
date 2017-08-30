@@ -71,7 +71,7 @@ public class CoreModule {
             }
 
             @Override
-            public SecretWordResponse createSecretWord(String secretWord, String token) {
+            public SecretWordResponse setSecretWord(String secretWord, String token) {
                 return new SecretWordResponse();
             }
 

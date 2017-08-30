@@ -37,7 +37,7 @@ public class RegistrationBackEndFlowImpl implements RegistrationBackEndFlow {
 
         return Single.fromCallable(() -> {
             String token = database.getToken();
-            backendApi.createSecretWord(secretWord, token);
+            backendApi.setSecretWord(secretWord, token);
             return new SecretWordSet();
         });
     }

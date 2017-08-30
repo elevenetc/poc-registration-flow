@@ -15,6 +15,7 @@ public class RegistrationFrontEndFlow implements FrontEndFlow {
     @Override
     public void handleEvent(Event event) {
         if (event instanceof RegistrationPassed) {
+            //
             screensLauncher.goToMain();
         } else if (event instanceof StartLoginOrSingIn) {
             screensLauncher.goToLogInOrSignIn();

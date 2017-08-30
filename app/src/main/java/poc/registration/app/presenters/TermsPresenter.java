@@ -23,7 +23,7 @@ public class TermsPresenter extends Presenter<TermsView> {
                 .agreeWithTerms()
                 .compose(schedulers.single())
                 .subscribe(
-                        passedRegistration -> frontEndFlow.handleEvent(passedRegistration)
+                        frontEndFlow::handleEvent
                 );
     }
 }

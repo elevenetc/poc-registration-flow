@@ -8,7 +8,7 @@ public interface BackendApi {
 
     AuthResponse auth(String username, String password);
 
-    SecretWordResponse createSecretWord(String secretWord, String token);
+    SecretWordResponse setSecretWord(String secretWord, String token);
 
     String getTerms(String token);
 
