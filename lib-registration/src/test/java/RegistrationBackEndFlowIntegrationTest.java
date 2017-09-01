@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import io.reactivex.Single;
 import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.cache.Database;
@@ -13,6 +12,7 @@ import utils.InMemoryDatabase;
 import utils.SuccessBackendApi;
 import utils.TestClassSubscriber;
 
+import static io.reactivex.Single.concat;
 import static org.junit.Assert.assertTrue;
 import static utils.Values.password;
 import static utils.Values.secretWord;
@@ -36,7 +36,7 @@ public class RegistrationBackEndFlowIntegrationTest {
     @Test
     public void successRegistration() {
 
-        Single.concat(
+        concat(
                 backEndFlow.auth(username, password),
                 backEndFlow.setSecretWord(secretWord),
                 backEndFlow.agreeWithTerms()

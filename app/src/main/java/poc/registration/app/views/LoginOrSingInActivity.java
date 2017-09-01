@@ -8,7 +8,7 @@ import android.widget.EditText;
 import poc.registration.app.R;
 import poc.registration.app.presenters.LogInOrSignInPresenter;
 
-import static poc.registration.app.di.DIHelper.coreComponent;
+import static poc.registration.app.di.DIHelper.presentersComponent;
 
 public class LoginOrSingInActivity
         extends AppCompatActivity
@@ -21,7 +21,7 @@ public class LoginOrSingInActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        presenter = coreComponent().inject(new LogInOrSignInPresenter());
+        presenter = presentersComponent().inject(new LogInOrSignInPresenter());
         presenter.onViewCreated(this);
 
         EditText editUsername = (EditText) findViewById(R.id.edit_username);

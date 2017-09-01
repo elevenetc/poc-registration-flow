@@ -8,7 +8,7 @@ import android.widget.EditText;
 import poc.registration.app.R;
 import poc.registration.app.presenters.SecretWordPresenter;
 
-import static poc.registration.app.di.DIHelper.coreComponent;
+import static poc.registration.app.di.DIHelper.presentersComponent;
 
 public class SecretWordActivity extends AppCompatActivity implements SecretWordView {
 
@@ -20,7 +20,7 @@ public class SecretWordActivity extends AppCompatActivity implements SecretWordV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secret_word);
 
-        presenter = coreComponent().inject(new SecretWordPresenter());
+        presenter = presentersComponent().inject(new SecretWordPresenter());
         presenter.onViewCreated(this);
 
         EditText editSecretWord = (EditText) findViewById(R.id.edit_secret_word);

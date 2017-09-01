@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import poc.registration.app.R;
 import poc.registration.app.presenters.TermsPresenter;
 
-import static poc.registration.app.di.DIHelper.coreComponent;
+import static poc.registration.app.di.DIHelper.presentersComponent;
 
 public class TermsActivity extends AppCompatActivity implements TermsView {
 
@@ -17,7 +17,7 @@ public class TermsActivity extends AppCompatActivity implements TermsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms);
 
-        presenter = coreComponent().inject(new TermsPresenter());
+        presenter = presentersComponent().inject(new TermsPresenter());
         presenter.onViewCreated(this);
 
         findViewById(R.id.btn_sign_terms).setOnClickListener(

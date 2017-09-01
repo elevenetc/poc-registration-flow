@@ -7,7 +7,7 @@ import android.view.View;
 import poc.registration.app.R;
 import poc.registration.app.presenters.LaunchPresenter;
 
-import static poc.registration.app.di.DIHelper.coreComponent;
+import static poc.registration.app.di.DIHelper.presentersComponent;
 
 public class LaunchActivity extends AppCompatActivity implements LaunchView {
 
@@ -18,7 +18,7 @@ public class LaunchActivity extends AppCompatActivity implements LaunchView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        presenter = coreComponent()
+        presenter = presentersComponent()
                 .inject(new LaunchPresenter())
                 .onViewCreated(this);
 

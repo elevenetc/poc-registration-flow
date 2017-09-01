@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MainPresenter presenter = DIHelper.coreComponent().inject(new MainPresenter());
+        MainPresenter presenter = DIHelper.presentersComponent().inject(new MainPresenter());
 
         findViewById(R.id.btn_logout).setOnClickListener(v -> presenter.logOut());
     }
