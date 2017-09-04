@@ -3,14 +3,18 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "poc.enrolment.app"
-        minSdkVersion 21
+        minSdkVersion 25
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
