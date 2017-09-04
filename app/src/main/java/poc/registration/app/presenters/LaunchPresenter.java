@@ -12,13 +12,13 @@ import poc.registration.events.StartLoginOrSingIn;
 public class LaunchPresenter extends Presenter<LaunchView> {
 
     @Inject
-    RegistrationBackEndFlow backEndFlow;
+    public RegistrationBackEndFlow backEndFlow;
 
     @Inject
-    FrontEndFlow frontEndFlow;
+    public FrontEndFlow frontEndFlow;
 
     @Inject
-    SchedulersManager schedulers;
+    public SchedulersManager schedulers;
 
     public LaunchPresenter() {
 
