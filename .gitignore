@@ -11,3 +11,4 @@
 /.idea
 *.ipr
 /lib-registration/build
+/utils-tests/build/
