@@ -9,31 +9,30 @@ import poc.registration.app.scheduling.SchedulersManager;
 
 public class TestSchedulers implements SchedulersManager {
 
-    private TestScheduler ui = new TestScheduler();
-    private TestScheduler backend = new TestScheduler();
+    private Scheduler scheduler = new TestScheduler();
 
     @Override
     public Scheduler ui() {
-        return ui;
+        return scheduler;
     }
 
     @Override
     public Scheduler background() {
-        return ui;
+        return scheduler;
     }
 
     @Override
     public <T> SingleTransformer<T, T> single() {
-        return upstream -> upstream.subscribeOn(backend).observeOn(ui);
+        return upstream -> upstream;
     }
 
     @Override
     public <T> FlowableTransformer<T, T> flowable() {
-        return upstream -> upstream.subscribeOn(backend).observeOn(ui);
+        return upstream -> upstream;
     }
 
     @Override
     public CompletableTransformer completable() {
-        return upstream -> upstream.subscribeOn(backend).observeOn(ui);
+        return upstream -> upstream;
     }
 }
