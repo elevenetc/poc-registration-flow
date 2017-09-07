@@ -1,9 +1,7 @@
 package poc.registration;
 
 import io.reactivex.Single;
-import poc.registration.events.Event;
-import poc.registration.events.RegistrationPassed;
-import poc.registration.events.SecretWordSet;
+import poc.registration.events.*;
 
 public interface RegistrationBackEndFlow {
 
@@ -13,5 +11,9 @@ public interface RegistrationBackEndFlow {
 
     Single<SecretWordSet> setSecretWord(String secretWord);
 
+    /**
+     * @return two type of events:
+     * {@link UserRegisteredAlready} or {@link NewUserCreated}
+     */
     Single<Event> auth(String username, String password);
 }

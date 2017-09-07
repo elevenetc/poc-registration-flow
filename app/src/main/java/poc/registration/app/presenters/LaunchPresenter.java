@@ -24,6 +24,11 @@ public class LaunchPresenter extends Presenter<LaunchView> {
 
     }
 
+    /**
+     * Checks if registration passed:
+     * true: triggers {@link RegistrationPassed} event
+     * false: triggers {@link StartLoginOrSingIn} event
+     */
     public LaunchPresenter onViewCreated(LaunchView view) {
 
         super.onViewCreated(view);
@@ -32,6 +37,7 @@ public class LaunchPresenter extends Presenter<LaunchView> {
                 .isRegistrationPassed()
                 .compose(schedulers.single())
                 .subscribe(passed -> {
+                    //do some ui animation based on result
                     if (passed) {
                         frontEndFlow.handleEvent(new RegistrationPassed());
                     } else {
@@ -42,6 +48,9 @@ public class LaunchPresenter extends Presenter<LaunchView> {
         return this;
     }
 
+    /**
+     * Triggers {@link StartLoginOrSingIn} event
+     */
     public void loginOrSignIn() {
         frontEndFlow.handleEvent(new StartLoginOrSingIn());
     }
