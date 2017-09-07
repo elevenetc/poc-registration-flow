@@ -36,6 +36,7 @@ public class SecretWordPresenter extends Presenter<SecretWordView> {
      * and passes event to {@link FrontEndFlow}
      */
     public void setSecretWord(String secretWord) {
+        //TODO: split registration flow into interfaces
         backEndFlow
                 .setSecretWord(secretWord)
                 .compose(schedulers.single())
