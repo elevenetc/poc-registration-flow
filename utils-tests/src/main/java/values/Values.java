@@ -1,4 +1,4 @@
-package utils;
+package values;
 
 public class Values {
     public static final String username = "username";

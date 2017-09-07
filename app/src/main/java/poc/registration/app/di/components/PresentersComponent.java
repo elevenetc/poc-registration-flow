@@ -15,7 +15,7 @@ import poc.registration.app.presenters.*;
         BackEndModule.class
 })
 public interface PresentersComponent {
-    LaunchPresenter inject(LaunchPresenter presenter);
+    InitPresenter inject(InitPresenter presenter);
 
     SecretWordPresenter inject(SecretWordPresenter presenter);
 

@@ -1,30 +1,30 @@
 package poc.registration.app.flows;
 
-import poc.registration.app.views.ScreensLauncher;
+import poc.registration.app.views.Screens;
 import poc.registration.events.*;
 
 public class RegistrationFrontEndFlow implements FrontEndFlow {
 
-    private ScreensLauncher screensLauncher;
+    private Screens screens;
 
-    public RegistrationFrontEndFlow(ScreensLauncher screensLauncher) {
+    public RegistrationFrontEndFlow(Screens screens) {
 
-        this.screensLauncher = screensLauncher;
+        this.screens = screens;
     }
 
     @Override
     public void handleEvent(Event event) {
         if (event instanceof RegistrationPassed) {
             //
-            screensLauncher.goToMain();
+            screens.goToMain();
         } else if (event instanceof StartLoginOrSingIn) {
-            screensLauncher.goToLogInOrSignIn();
+            screens.goToLogInOrSignIn();
         } else if (event instanceof UserRegisteredAlready) {
-            screensLauncher.goToMain();
+            screens.goToMain();
         } else if (event instanceof NewUserCreated) {
-            screensLauncher.goToSecretWord();
+            screens.goToSecretWord();
         } else if (event instanceof SecretWordSet) {
-            screensLauncher.gotoTerms();
+            screens.gotoTerms();
         }
     }
 }

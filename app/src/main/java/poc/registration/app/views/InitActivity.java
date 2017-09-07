@@ -5,13 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import poc.registration.app.R;
-import poc.registration.app.presenters.LaunchPresenter;
+import poc.registration.app.presenters.InitPresenter;
 
 import static poc.registration.app.di.DIHelper.presentersComponent;
 
-public class LaunchActivity extends AppCompatActivity implements LaunchView {
+public class InitActivity extends AppCompatActivity implements InitView {
 
-    private LaunchPresenter presenter;
+    private InitPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class LaunchActivity extends AppCompatActivity implements LaunchView {
         setContentView(R.layout.activity_launch);
 
         presenter = presentersComponent()
-                .inject(new LaunchPresenter())
+                .inject(new InitPresenter())
                 .onViewCreated(this);
 
         findViewById(R.id.btn_login_or_signin).setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,23 @@ public class SecretWordPresenter extends Presenter<SecretWordView> {
     @Inject
     SchedulersManager schedulers;
 
+    public SecretWordPresenter() {
+        //DI constructor
+    }
+
+    public SecretWordPresenter(
+            FrontEndFlow frontEndFlow,
+            RegistrationBackEndFlow backEndFlow,
+            SchedulersManager schedulers) {
+        this.frontEndFlow = frontEndFlow;
+        this.backEndFlow = backEndFlow;
+        this.schedulers = schedulers;
+    }
+
+    /**
+     * Sets secret word at {@link RegistrationBackEndFlow}
+     * and passes event to {@link FrontEndFlow}
+     */
     public void setSecretWord(String secretWord) {
         backEndFlow
                 .setSecretWord(secretWord)

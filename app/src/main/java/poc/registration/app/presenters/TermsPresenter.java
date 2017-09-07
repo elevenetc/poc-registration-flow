@@ -18,6 +18,22 @@ public class TermsPresenter extends Presenter<TermsView> {
     @Inject
     SchedulersManager schedulers;
 
+    public TermsPresenter() {
+
+    }
+
+    public TermsPresenter(
+            FrontEndFlow frontEndFlow,
+            RegistrationBackEndFlow backEndFlow,
+            SchedulersManager schedulers) {
+        this.frontEndFlow = frontEndFlow;
+        this.backEndFlow = backEndFlow;
+        this.schedulers = schedulers;
+    }
+
+    /**
+     * Signs terms and passes result event to {@link FrontEndFlow}
+     */
     public void signTerms() {
         backEndFlow
                 .agreeWithTerms()

@@ -4,11 +4,11 @@ import android.content.Intent;
 
 import poc.registration.app.App;
 
-public class ScreensLauncherImpl implements ScreensLauncher {
+public class ScreensImpl implements Screens {
 
     private App app;
 
-    public ScreensLauncherImpl(App app) {
+    public ScreensImpl(App app) {
 
         this.app = app;
     }
@@ -36,8 +36,8 @@ public class ScreensLauncherImpl implements ScreensLauncher {
     }
 
     @Override
-    public void gotoLauncher() {
-        app.startActivity(new Intent(app, LaunchActivity.class)
+    public void gotoInit() {
+        app.startActivity(new Intent(app, InitActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
         );
     }

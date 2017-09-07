@@ -16,11 +16,11 @@ import poc.registration.models.SecretWordResponse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static utils.MockitoUtils.once;
-import static utils.Values.password;
-import static utils.Values.secretWord;
-import static utils.Values.token;
-import static utils.Values.username;
+import static values.MockitoUtils.once;
+import static values.Values.password;
+import static values.Values.secretWord;
+import static values.Values.token;
+import static values.Values.username;
 
 /**
  * Unit tests for BackEndFlow

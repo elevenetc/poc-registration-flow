@@ -1,6 +1,6 @@
 package poc.registration.app.views;
 
-public interface ScreensLauncher {
+public interface Screens {
     void goToMain();
 
     void goToLogInOrSignIn();
@@ -9,5 +9,5 @@ public interface ScreensLauncher {
 
     void gotoTerms();
 
-    void gotoLauncher();
+    void gotoInit();
 }

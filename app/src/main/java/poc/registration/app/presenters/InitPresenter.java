@@ -5,11 +5,11 @@ import javax.inject.Inject;
 import poc.registration.RegistrationBackEndFlow;
 import poc.registration.app.flows.FrontEndFlow;
 import poc.registration.app.scheduling.SchedulersManager;
-import poc.registration.app.views.LaunchView;
+import poc.registration.app.views.InitView;
 import poc.registration.events.RegistrationPassed;
 import poc.registration.events.StartLoginOrSingIn;
 
-public class LaunchPresenter extends Presenter<LaunchView> {
+public class InitPresenter extends Presenter<InitView> {
 
     @Inject
     public RegistrationBackEndFlow backEndFlow;
@@ -20,8 +20,17 @@ public class LaunchPresenter extends Presenter<LaunchView> {
     @Inject
     public SchedulersManager schedulers;
 
-    public LaunchPresenter() {
+    public InitPresenter() {
+        //DI constructor
+    }
 
+    public InitPresenter(
+            FrontEndFlow frontEndFlow,
+            RegistrationBackEndFlow backEndFlow,
+            SchedulersManager schedulers) {
+        this.frontEndFlow = frontEndFlow;
+        this.backEndFlow = backEndFlow;
+        this.schedulers = schedulers;
     }
 
     /**
@@ -29,7 +38,7 @@ public class LaunchPresenter extends Presenter<LaunchView> {
      * true: triggers {@link RegistrationPassed} event
      * false: triggers {@link StartLoginOrSingIn} event
      */
-    public LaunchPresenter onViewCreated(LaunchView view) {
+    public InitPresenter onViewCreated(InitView view) {
 
         super.onViewCreated(view);
 

@@ -8,15 +8,15 @@ import poc.registration.events.NewUserCreated;
 import poc.registration.events.RegistrationPassed;
 import poc.registration.events.SecretWordSet;
 import poc.registration.impl.RegistrationBackEndFlowImpl;
-import utils.InMemoryDatabase;
-import utils.SuccessBackendApi;
-import utils.TestClassSubscriber;
+import values.InMemoryDatabase;
+import values.SuccessBackendApi;
+import values.TestClassSubscriber;
 
 import static io.reactivex.Single.concat;
 import static org.junit.Assert.assertTrue;
-import static utils.Values.password;
-import static utils.Values.secretWord;
-import static utils.Values.username;
+import static values.Values.password;
+import static values.Values.secretWord;
+import static values.Values.username;
 
 public class RegistrationBackEndFlowIntegrationTest {
 

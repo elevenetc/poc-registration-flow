@@ -7,8 +7,8 @@ import dagger.Provides;
 import poc.registration.app.App;
 import poc.registration.app.flows.FrontEndFlow;
 import poc.registration.app.flows.RegistrationFrontEndFlow;
-import poc.registration.app.views.ScreensLauncher;
-import poc.registration.app.views.ScreensLauncherImpl;
+import poc.registration.app.views.Screens;
+import poc.registration.app.views.ScreensImpl;
 
 @Singleton
 @Module
@@ -23,13 +23,13 @@ public class FrontEndModule {
 
     @Provides
     @Singleton
-    public FrontEndFlow provideFrontEndFlow(ScreensLauncher screensLauncher) {
-        return new RegistrationFrontEndFlow(screensLauncher);
+    public FrontEndFlow provideFrontEndFlow(Screens screens) {
+        return new RegistrationFrontEndFlow(screens);
     }
 
     @Provides
     @Singleton
-    public ScreensLauncher provideScreensLauncher() {
-        return new ScreensLauncherImpl(application);
+    public Screens provideScreensLauncher() {
+        return new ScreensImpl(application);
     }
 }

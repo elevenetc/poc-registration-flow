@@ -1,4 +1,4 @@
-package utils;
+package values;
 
 import poc.registration.api.BackendApi;
 import poc.registration.events.InvalidTokenException;

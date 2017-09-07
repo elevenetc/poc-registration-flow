@@ -8,7 +8,7 @@ public interface RegistrationBackEndFlow {
     Single<Boolean> isRegistrationPassed();
 
     Single<RegistrationPassed> agreeWithTerms();
-
+    
     Single<SecretWordSet> setSecretWord(String secretWord);
 
     /**

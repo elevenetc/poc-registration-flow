@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="poc.registration.app.views.LaunchActivity">
+    tools:context="poc.registration.app.views.InitActivity">
 
     <TextView
         android:layout_width="wrap_content"
