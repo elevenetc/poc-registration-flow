@@ -20,7 +20,11 @@ public class SecretWordActivity extends AppCompatActivity implements SecretWordV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secret_word);
 
-        presenter = presentersComponent().inject(new SecretWordPresenter());
+        presenter = presentersComponent()
+                .inject(new SecretWordPresenter(
+                                presentersComponent().registrationFlow()
+                        )
+                );
         presenter.onViewCreated(this);
 
         EditText editSecretWord = (EditText) findViewById(R.id.edit_secret_word);

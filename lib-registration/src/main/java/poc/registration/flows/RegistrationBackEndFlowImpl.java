@@ -1,7 +1,6 @@
-package poc.registration.impl;
+package poc.registration.flows;
 
 import io.reactivex.Single;
-import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.cache.Database;
 import poc.registration.events.*;

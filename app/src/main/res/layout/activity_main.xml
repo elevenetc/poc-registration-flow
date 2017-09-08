@@ -19,6 +19,12 @@
         android:textSize="18sp"/>
 
     <Button
+        android:id="@+id/btn_change_secret_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Secret Word"/>
+
+    <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

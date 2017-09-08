@@ -2,12 +2,12 @@ package poc.registration.app.presenters;
 
 import javax.inject.Inject;
 
-import poc.registration.RegistrationBackEndFlow;
 import poc.registration.app.flows.FrontEndFlow;
 import poc.registration.app.scheduling.SchedulersManager;
 import poc.registration.app.views.InitView;
 import poc.registration.events.RegistrationPassed;
 import poc.registration.events.StartLoginOrSingIn;
+import poc.registration.flows.RegistrationBackEndFlow;
 
 public class InitPresenter extends Presenter<InitView> {
 

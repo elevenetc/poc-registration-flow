@@ -1,15 +1,16 @@
-package poc.registration;
+package poc.registration.flows;
 
 import io.reactivex.Single;
-import poc.registration.events.*;
+import poc.registration.events.Event;
+import poc.registration.events.NewUserCreated;
+import poc.registration.events.RegistrationPassed;
+import poc.registration.events.UserRegisteredAlready;
 
-public interface RegistrationBackEndFlow {
+public interface RegistrationBackEndFlow extends SetSecretWordFlow {
 
     Single<Boolean> isRegistrationPassed();
 
     Single<RegistrationPassed> agreeWithTerms();
-    
-    Single<SecretWordSet> setSecretWord(String secretWord);
 
     /**
      * @return two type of events:

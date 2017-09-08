@@ -5,7 +5,9 @@ public interface Screens {
 
     void goToLogInOrSignIn();
 
-    void goToSecretWord();
+    void goToCreateSecretWord();
+
+    void gotToChangeSecretWord();
 
     void gotoTerms();
 

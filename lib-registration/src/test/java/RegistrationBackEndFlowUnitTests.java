@@ -2,13 +2,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import io.reactivex.observers.TestObserver;
-import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.cache.Database;
 import poc.registration.events.*;
 import poc.registration.exceptions.InvalidSecretWordException;
 import poc.registration.exceptions.InvalidUsernameOrPassword;
-import poc.registration.impl.RegistrationBackEndFlowImpl;
+import poc.registration.flows.RegistrationBackEndFlow;
+import poc.registration.flows.RegistrationBackEndFlowImpl;
 import poc.registration.models.AgreeWithTermsResponse;
 import poc.registration.models.AuthResponse;
 import poc.registration.models.SecretWordResponse;

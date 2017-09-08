@@ -3,7 +3,6 @@ package poc.registration.app;
 import org.junit.Before;
 import org.junit.Test;
 
-import poc.registration.RegistrationBackEndFlow;
 import poc.registration.app.flows.FrontEndFlow;
 import poc.registration.app.presenters.*;
 import poc.registration.app.scheduling.SchedulersManager;
@@ -15,6 +14,7 @@ import poc.registration.cache.Database;
 import poc.registration.events.RegistrationPassed;
 import poc.registration.events.SecretWordSet;
 import poc.registration.events.StartLoginOrSingIn;
+import poc.registration.flows.RegistrationBackEndFlow;
 
 import static io.reactivex.Single.just;
 import static org.mockito.ArgumentMatchers.any;

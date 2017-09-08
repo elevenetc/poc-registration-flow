@@ -7,6 +7,7 @@ import poc.registration.app.di.modules.BackEndModule;
 import poc.registration.app.di.modules.CommonModule;
 import poc.registration.app.di.modules.FrontEndModule;
 import poc.registration.app.presenters.*;
+import poc.registration.flows.RegistrationBackEndFlow;
 
 @Singleton
 @Component(modules = {
@@ -15,6 +16,7 @@ import poc.registration.app.presenters.*;
         BackEndModule.class
 })
 public interface PresentersComponent {
+
     InitPresenter inject(InitPresenter presenter);
 
     SecretWordPresenter inject(SecretWordPresenter presenter);
@@ -24,4 +26,6 @@ public interface PresentersComponent {
     TermsPresenter inject(TermsPresenter presenter);
 
     MainPresenter inject(MainPresenter presenter);
+
+    RegistrationBackEndFlow registrationFlow();
 }

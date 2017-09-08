@@ -22,7 +22,7 @@ public class RegistrationFrontEndFlow implements FrontEndFlow {
         } else if (event instanceof UserRegisteredAlready) {
             screens.goToMain();
         } else if (event instanceof NewUserCreated) {
-            screens.goToSecretWord();
+            screens.goToCreateSecretWord();
         } else if (event instanceof SecretWordSet) {
             screens.gotoTerms();
         }

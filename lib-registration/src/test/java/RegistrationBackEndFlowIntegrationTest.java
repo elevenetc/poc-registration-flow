@@ -1,13 +1,13 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import poc.registration.RegistrationBackEndFlow;
 import poc.registration.api.BackendApi;
 import poc.registration.cache.Database;
 import poc.registration.events.NewUserCreated;
 import poc.registration.events.RegistrationPassed;
 import poc.registration.events.SecretWordSet;
-import poc.registration.impl.RegistrationBackEndFlowImpl;
+import poc.registration.flows.RegistrationBackEndFlow;
+import poc.registration.flows.RegistrationBackEndFlowImpl;
 import values.InMemoryDatabase;
 import values.SuccessBackendApi;
 import values.TestClassSubscriber;
