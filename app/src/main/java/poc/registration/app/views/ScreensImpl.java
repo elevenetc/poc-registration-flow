@@ -27,12 +27,12 @@ public class ScreensImpl implements Screens {
 
     @Override
     public void goToCreateSecretWord() {
-        app.startActivity(new Intent(app, SecretWordActivity.class));
+        app.startActivity(SecretWordActivity.registrationStep(app));
     }
 
     @Override
     public void gotToChangeSecretWord() {
-        app.startActivity(new Intent(app, SecretWordActivity.class));
+        app.startActivity(SecretWordActivity.change(app));
     }
 
     @Override

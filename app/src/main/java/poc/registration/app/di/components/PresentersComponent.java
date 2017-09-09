@@ -7,6 +7,7 @@ import poc.registration.app.di.modules.BackEndModule;
 import poc.registration.app.di.modules.CommonModule;
 import poc.registration.app.di.modules.FrontEndModule;
 import poc.registration.app.presenters.*;
+import poc.registration.flows.ChangeSecretWord;
 import poc.registration.flows.RegistrationBackEndFlow;
 
 @Singleton
@@ -28,4 +29,6 @@ public interface PresentersComponent {
     MainPresenter inject(MainPresenter presenter);
 
     RegistrationBackEndFlow registrationFlow();
+
+    ChangeSecretWord changeSecretWord();
 }

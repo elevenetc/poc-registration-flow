@@ -3,7 +3,6 @@ package poc.registration.app.views;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import poc.registration.app.R;
 import poc.registration.app.presenters.MainPresenter;
@@ -24,11 +23,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         screens = frontEndComponent().screens();
 
         findViewById(R.id.btn_logout).setOnClickListener(v -> presenter.logOut());
-        findViewById(R.id.btn_change_secret_word).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                screens.goToCreateSecretWord();
-            }
-        });
+        findViewById(R.id.btn_change_secret_word).setOnClickListener(v -> screens.gotToChangeSecretWord());
     }
 }
